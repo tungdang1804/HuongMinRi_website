@@ -1,0 +1,51 @@
+
+:root {
+  --color-primary: #387878;
+  --color-primary-light: #4a9999;
+  --color-primary-dark: #2a5a5a;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f8fdfd;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+
+/* Traditional Patterns */
+.bg-coin-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%23fef3c7' stroke-opacity='0.25' stroke-width='1.2'%3E%3Ccircle cx='20' cy='20' r='14'/%3E%3Crect x='15' y='15' width='10' height='10'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 28px 28px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Animations fixes for Safari/Chrome */
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(1.5deg) scale(1.01); }
+}
+
+@keyframes fireworkPop {
+  0% { transform: scale(0.3); opacity: 0; }
+  20% { opacity: 0.6; }
+  40% { transform: scale(1); }
+  60% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.2); opacity: 0; }
+}

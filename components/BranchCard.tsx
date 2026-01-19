@@ -1,39 +1,49 @@
+
 import React from 'react';
-import { MapPin, Phone } from 'lucide-react';
+// Import Star icon to fix the missing component error
+import { MapPin, Phone, Star } from 'lucide-react';
 import { Branch } from '../types';
 
 interface BranchCardProps {
-  branch: Branch;
-  index: number;
+  data: Branch;
 }
 
-export const BranchCard: React.FC<BranchCardProps> = React.memo(({ branch, index }) => {
+export const BranchCard: React.FC<BranchCardProps> = React.memo(({ data }) => {
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-brand/10 relative overflow-hidden group">
-      <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-brand/5 rounded-full group-hover:bg-brand/10 transition-colors"></div>
+    <div className="bg-[#fdf2f5]/30 p-8 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-500 border border-brand-pink relative overflow-hidden group">
+      <div className="absolute -top-12 -right-12 w-32 h-32 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
       
-      <h3 className="text-xl font-signature text-brand font-bold mb-4">Chi Nhánh {index + 1}</h3>
+      <h3 className="text-2xl font-signature text-primary font-bold mb-6">{data.name}</h3>
       
-      <div className="flex items-start space-x-3 mb-3">
-        <MapPin className="w-5 h-5 text-brand shrink-0 mt-1" />
-        <p className="text-gray-600 text-sm leading-relaxed">{branch.address}</p>
+      <div className="space-y-4 relative z-10">
+        <div className="flex items-start space-x-4">
+          <div className="bg-white p-2 rounded-xl shadow-sm">
+            <MapPin className="w-5 h-5 text-primary shrink-0" />
+          </div>
+          <p className="text-gray-600 text-sm leading-relaxed font-medium">{data.address}</p>
+        </div>
+        
+        <div className="flex items-center space-x-4">
+          <div className="bg-white p-2 rounded-xl shadow-sm">
+            <Phone className="w-5 h-5 text-primary shrink-0" />
+          </div>
+          <a href={`tel:${data.phone.replace(/-/g, '')}`} className="text-gray-800 font-bold hover:text-primary transition-colors text-base">
+            {data.phone}
+          </a>
+        </div>
       </div>
       
-      <div className="flex items-center space-x-3">
-        <Phone className="w-5 h-5 text-brand shrink-0" />
-        <a href={`tel:${branch.phone.replace(/-/g, '')}`} className="text-gray-800 font-medium hover:text-brand transition-colors">
-          {branch.phone}
-        </a>
-      </div>
-      
-      <div className="mt-4 pt-4 border-t border-gray-100 flex justify-end">
+      <div className="mt-8 pt-6 border-t border-brand-pink/50 flex justify-between items-center">
+        <div className="flex space-x-1">
+          {[1,2,3,4,5].map(i => <Star key={i} size={10} className="text-yellow-400 fill-current" />)}
+        </div>
         <a 
-          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.address)}`} 
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(data.address)}`} 
           target="_blank" 
           rel="noreferrer"
-          className="text-xs font-semibold text-brand uppercase tracking-wider hover:underline"
+          className="text-[10px] font-black text-primary uppercase tracking-[0.2em] hover:underline"
         >
-          Chỉ đường
+          Xem vị trí
         </a>
       </div>
     </div>
