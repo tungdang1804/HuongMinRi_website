@@ -22,8 +22,14 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, images, onClose 
   };
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full relative overflow-hidden flex flex-col transform transition-all animate-scale-up">
+    <div 
+      className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in"
+      onClick={onClose}
+    >
+      <div 
+        className="bg-white rounded-3xl shadow-2xl max-w-lg w-full relative overflow-hidden flex flex-col transform transition-all animate-scale-up"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Header */}
         <div className="bg-brand text-white p-4 flex justify-between items-center shrink-0">

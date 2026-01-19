@@ -29,6 +29,8 @@ const App = () => {
 
   const { basicInfo, navigation, contacts, event, assets, labels, features } = siteConfig;
 
+  const isTetMode = isDecorEnabled && event.theme === 'tet';
+
   useEffect(() => {
     const primaryColor = basicInfo.themeColor || '#ff8fab';
     document.documentElement.style.setProperty('--color-primary', primaryColor);
@@ -82,7 +84,6 @@ const App = () => {
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-md py-1' : 'bg-transparent py-4'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center cursor-pointer active:scale-95 transition-transform" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            {/* Tăng kích thước logo thêm 50% (md:h-32) và dời vào 20px (md:ml-5) */}
             <div className="h-20 md:h-32 w-auto md:ml-5 flex items-center">
               <OptimizedImage 
                 src={isDecorEnabled && event.theme === 'tet' ? assets.tetLogo : assets.footerLogo} 
@@ -110,8 +111,8 @@ const App = () => {
               </button>
             </div>
             
-            {isDecorEnabled && event.theme === 'tet' && (
-              <div className="bg-red-600 px-4 py-1 shadow-md border-l-4 border-yellow-400 rounded-bl-xl">
+            {isTetMode && (
+              <div className={`bg-red-600 px-4 py-1 shadow-md border-l-4 border-yellow-400 rounded-bl-xl ${isTetMode ? 'bg-coin-pattern' : ''}`}>
                 <div className="text-white font-black text-[10px] lg:text-xs uppercase tracking-widest whitespace-nowrap">
                   {event.bannerText}
                 </div>
@@ -158,7 +159,10 @@ const App = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
-              <button onClick={() => setIsTimelineOpen(true)} className="bg-red-600 text-white border-2 border-yellow-400 px-8 py-4 rounded-full font-black shadow-xl uppercase tracking-widest hover:scale-105 transition-transform">
+              <button 
+                onClick={() => setIsTimelineOpen(true)} 
+                className={`bg-red-600 text-white border-2 border-yellow-400 px-8 py-4 rounded-full font-black shadow-xl uppercase tracking-widest hover:scale-105 transition-transform ${isTetMode ? 'bg-coin-pattern' : ''}`}
+              >
                 {labels.ctaSecondary}
               </button>
               <button onClick={() => setIsGuideOpen(true)} className="bg-white text-primary border-2 border-primary px-8 py-4 rounded-full font-black shadow-lg uppercase tracking-widest hover:bg-brand-pink transition-transform">

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { X, Calendar, Clock, Gift } from 'lucide-react';
 import { TimelineEvent } from '../types';
@@ -12,8 +13,14 @@ export const TimelineModal: React.FC<TimelineModalProps> = ({ isOpen, events, on
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-brand/20 backdrop-blur-md animate-fade-in">
-      <div className="bg-white/95 rounded-[2rem] shadow-2xl max-w-2xl w-full relative overflow-hidden flex flex-col max-h-[90vh] border border-white/50">
+    <div 
+      className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-brand/20 backdrop-blur-md animate-fade-in"
+      onClick={onClose}
+    >
+      <div 
+        className="bg-white/95 rounded-[2rem] shadow-2xl max-w-2xl w-full relative overflow-hidden flex flex-col max-h-[90vh] border border-white/50"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Header */}
         <div className="bg-gradient-to-r from-brand to-brand-light p-6 relative shrink-0">

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Promotion } from '../types';
@@ -22,8 +23,14 @@ export const PromotionPopup: React.FC<PromotionPopupProps> = ({ isOpen, promotio
   if (!isOpen || !activePromo) return null;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full relative overflow-hidden transform transition-all animate-scale-up">
+    <div 
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+    >
+      <div 
+        className="bg-white rounded-3xl shadow-2xl max-w-md w-full relative overflow-hidden transform transition-all animate-scale-up"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Close Button */}
         <button 

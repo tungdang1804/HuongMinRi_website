@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Star, X, MapPin, CheckCircle } from 'lucide-react';
 import { Branch } from '../types';
@@ -18,9 +19,6 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({ isOpen, branches, onCl
 
   const handleSubmit = () => {
     // 1. Copy text to clipboard
-    // Ideally, we would also pre-fill the star rating in the Google URL if possible, 
-    // but Google Maps URL schemes don't typically support pre-filling the star count directly via simple link.
-    // So we primarily focus on copying the comment.
     if (comment.trim()) {
       navigator.clipboard.writeText(comment);
       setIsCopied(true);
@@ -46,8 +44,14 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({ isOpen, branches, onCl
   };
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full relative overflow-hidden transform transition-all animate-scale-up border-4 border-brand-pink">
+    <div 
+      className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+      onClick={onClose}
+    >
+      <div 
+        className="bg-white rounded-3xl shadow-2xl max-w-lg w-full relative overflow-hidden transform transition-all animate-scale-up border-4 border-brand-pink"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Header */}
         <div className="bg-brand text-white p-6 text-center relative">
